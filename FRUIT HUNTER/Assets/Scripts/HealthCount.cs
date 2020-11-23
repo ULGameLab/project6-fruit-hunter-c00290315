@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthCount : MonoBehaviour
 {
-    private int health = 100;
+    public static int health = 100;
     public Text healthText;
     private int hpAdd = 0;
-    public bool bonus = false;
+    public static bool bonus = false;
+    public AudioSource dePower;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +21,7 @@ public class HealthCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        healthText.text = "Health: " + health.ToString();
     }
 
     void OnTriggerEnter(Collider col)
@@ -44,6 +46,7 @@ public class HealthCount : MonoBehaviour
             health = health + hpAdd;
             healthText.text = "Health: " + health.ToString();
             bonus = true; // figure out how to make this only be on for 30s
+            Invoke("SetBonusBack", 15);
         }
 
         if (col.gameObject.CompareTag("Candy"))
@@ -53,7 +56,42 @@ public class HealthCount : MonoBehaviour
                 hpAdd = -10;
                 health = health + hpAdd;
                 healthText.text = "Health: " + health.ToString();
+                if (health <= 0)
+                {
+                    EndGame();
+                }
             } 
         }
+
+        if (col.gameObject.CompareTag("Enemy"))
+        {   
+            if (!bonus)
+            {
+                hpAdd = -5;
+                health = health + hpAdd;
+                if (health < 0) health = 0;
+                healthText.text = "Health: " + health.ToString();
+                if (health <= 0)
+                {
+                    EndGame();
+                }
+            }
+        }
+    }
+
+    public int GetHealthValue()
+    {
+        return health;
+    }
+
+    void EndGame()
+    {
+        SceneManager.LoadScene("EndScene");
+    }
+
+    private void SetBonusBack()
+    {
+        bonus = false;
+        dePower.Play();
     }
 }

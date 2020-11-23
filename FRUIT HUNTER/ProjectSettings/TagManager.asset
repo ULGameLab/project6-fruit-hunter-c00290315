@@ -9,6 +9,8 @@ TagManager:
   - Banana
   - Orange
   - Candy
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
