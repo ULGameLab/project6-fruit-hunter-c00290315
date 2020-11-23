@@ -3059,7 +3059,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 959d5988dcf2570418c32f4900d188d4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.028
+  m_Volume: 0.012
   m_Pitch: 1
   Loop: 1
   Mute: 1
@@ -5368,6 +5368,10 @@ PrefabInstance:
     - target: {fileID: 2175390691029677684, guid: 5dc34a065cab51d4a8a6708e572d82a1, type: 3}
       propertyPath: m_Name
       value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336556520066193356, guid: 5dc34a065cab51d4a8a6708e572d82a1, type: 3}
+      propertyPath: m_Volume
+      value: 0.193
       objectReference: {fileID: 0}
     - target: {fileID: 2912654225845847143, guid: 5dc34a065cab51d4a8a6708e572d82a1, type: 3}
       propertyPath: m_LocalPosition.x
